@@ -29,7 +29,7 @@
     <remap from="/odom_world" to="$(arg odometry_topic)"/>
     <remap from="/sdf_map/odom" to="$(arg odometry_topic)"/>
     <remap from="/sdf_map/cloud" to="$(arg cloud_topic)"/>
-    <remap from = "/sdf_map/pose"   to = "$(arg camera_pose_topic)"/> 
+    <remap from = "/sdf_map/pose"   to = "$(arg camera_pose_topic)"/>
     <remap from = "/sdf_map/depth" to = "$(arg depth_topic)"/>
 
     <!-- replanning method -->
@@ -51,14 +51,14 @@
     <param name="fsm/waypoint2_y" value="$(arg point2_y)" type="double"/>
     <param name="fsm/waypoint2_z" value="$(arg point2_z)" type="double"/>
 
-    <param name="sdf_map/resolution"      value="0.1" /> 
-    <param name="sdf_map/map_size_x"   value="$(arg map_size_x_)" /> 
-    <param name="sdf_map/map_size_y"   value="$(arg map_size_y_)" /> 
-    <param name="sdf_map/map_size_z"   value="$(arg map_size_z_)" /> 
-    <param name="sdf_map/local_update_range_x"  value="5.5" /> 
-    <param name="sdf_map/local_update_range_y"  value="5.5" /> 
-    <param name="sdf_map/local_update_range_z"  value="4.5" /> 
-    <param name="sdf_map/obstacles_inflation"     value="0.099" /> 
+    <param name="sdf_map/resolution"      value="0.1" />
+    <param name="sdf_map/map_size_x"   value="$(arg map_size_x_)" />
+    <param name="sdf_map/map_size_y"   value="$(arg map_size_y_)" />
+    <param name="sdf_map/map_size_z"   value="$(arg map_size_z_)" />
+    <param name="sdf_map/local_update_range_x"  value="5.5" />
+    <param name="sdf_map/local_update_range_y"  value="5.5" />
+    <param name="sdf_map/local_update_range_z"  value="4.5" />
+    <param name="sdf_map/obstacles_inflation"     value="0.099" />
     <param name="sdf_map/local_bound_inflate"    value="0.5"/>
     <param name="sdf_map/local_map_margin" value="50"/>
     <param name="sdf_map/ground_height"        value="-1.0"/>
@@ -89,7 +89,7 @@
     <param name="sdf_map/virtual_ceil_height"   value="3.0"/>
     <param name="sdf_map/show_occ_time"  value="false"/>
     <param name="sdf_map/show_esdf_time" value="false"/>
-    <param name="sdf_map/pose_type"     value="1"/>  
+    <param name="sdf_map/pose_type"     value="1"/>
     <param name="sdf_map/frame_id"      value="world"/>
 
   <!-- planner manager -->
@@ -128,7 +128,7 @@
     <param name="optimization/lambda5" value="1.5" type="double"/>
     <param name="optimization/lambda6" value="10.0" type="double"/>
     <param name="optimization/lambda7" value="20.0" type="double"/>
-    
+
     <param name="optimization/dist0" value="0.4" type="double"/>
     <param name="optimization/dist1" value="0.0" type="double"/>
     <param name="optimization/max_vel" value="$(arg max_vel)" type="double"/>

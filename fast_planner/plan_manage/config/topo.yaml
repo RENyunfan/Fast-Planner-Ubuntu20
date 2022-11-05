@@ -1,0 +1,16 @@
+odom_world: "/lidar_slam/odom"
+sdf_map:
+  odom: "/lidar_slam/odom"
+  cloud: "/pcl_render/cloud"
+  pose: ""
+  depth:
+
+fast_planner_node:
+  planner_node:
+    # 2 for topo plan
+    planner: 2
+  fsm:
+    flight_type: 1
+    thresh_replan: 0.5
+    thresh_no_replan: 2.0
+    
