@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(poly_traj)
-
+add_compile_options(-Werror=return-type)
 set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_FLAGS "-std=c++14")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")

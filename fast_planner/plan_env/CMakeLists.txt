@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(plan_env)
-
+add_compile_options(-Werror=return-type)
 find_package(OpenCV REQUIRED)
 
 

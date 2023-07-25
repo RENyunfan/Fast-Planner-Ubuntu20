@@ -326,6 +326,7 @@ Eigen::Vector3i Astar::posToIndex(Eigen::Vector3d pt) {
 
 int Astar::timeToIndex(double time) {
   int idx = floor((time - time_origin_) * inv_time_resolution_);
+  return idx;
 }
 
 }  // namespace fast_planner

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(traj_utils)
-
+add_compile_options(-Werror=return-type)
 find_package(catkin REQUIRED COMPONENTS
   bspline
   bspline_opt

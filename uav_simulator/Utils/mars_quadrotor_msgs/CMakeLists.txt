@@ -44,50 +44,68 @@ cmake_minimum_required(VERSION 2.8.3)
 project(quadrotor_msgs)
 
 find_package(catkin REQUIRED COMPONENTS
-  #armadillo
-  roscpp
-  nav_msgs
-  geometry_msgs
-  message_generation
-)
+        #armadillo
+        roscpp
+        nav_msgs
+        geometry_msgs
+        message_generation
+        )
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 include_directories(
-    ${catkin_INCLUDE_DIRS}
-    include
-    )
+        ${catkin_INCLUDE_DIRS}
+        include
+)
 
-
+#
 add_message_files(
-  FILES
-  AuxCommand.msg
-  Corrections.msg
-  Gains.msg
-  OutputData.msg
-  PositionCommand.msg
-  PPROutputData.msg
-  Serial.msg
-  SO3Command.msg
-  StatusData.msg
-  TRPYCommand.msg
-  Odometry.msg
-  PolynomialTrajectory.msg
-  LQRTrajectory.msg
+        FILES
+        esdf_map.msg
+        fc_to_oa.msg
+        oa_result.msg
+        vio_result.msg
+        ctrl.msg
+        aec.msg
+        AuxCommand.msg
+        Corrections.msg
+        Gains.msg
+        OutputData.msg
+        PositionCommand.msg
+        PPROutputData.msg
+        Serial.msg
+        SO3Command.msg
+        StatusData.msg
+        TRPYCommand.msg
+        Odometry.msg
+        PolynomialTrajectory.msg
+        MincoTrajectory.msg
+        LQRTrajectory.msg
+        drone_aec_info.msg
+        oa_manager_debug.msg
+        TakeoffLand.msg
+        Px4ctrlDebug.msg
+        ServerTime.msg
+        TrakingPerformance.msg
+        MpcPositionCommand.msg
+        QuadrotorState.msg
+        SpatialTemporalOffset.msg
+        Polyhedron.msg
+        PolyhedronVector.msg
 )
 
 generate_messages(
-    DEPENDENCIES
-    geometry_msgs
-    nav_msgs
+        DEPENDENCIES
+        geometry_msgs
+        nav_msgs
 )
 
 catkin_package(
-  #INCLUDE_DIRS include
-  LIBRARIES encode_msgs decode_msgs
-  #CATKIN_DEPENDS geometry_msgs nav_msgs
-  #DEPENDS system_lib
-  CATKIN_DEPENDS message_runtime
+        #INCLUDE_DIRS include
+        LIBRARIES encode_msgs decode_msgs
+        #CATKIN_DEPENDS geometry_msgs nav_msgs
+        #DEPENDS system_lib
+        CATKIN_DEPENDS message_runtime
 )
 
 # add_executable(test_exe src/test_exe.cpp)
