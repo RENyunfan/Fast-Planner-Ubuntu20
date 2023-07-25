@@ -30,30 +30,68 @@
 #include <plan_manage/topo_replan_fsm.h>
 
 #include <plan_manage/backward.hpp>
+#include "quadrotor_msgs/PositionCommand.h"
+
 namespace backward {
-backward::SignalHandling sh;
+    backward::SignalHandling sh;
 }
 
 using namespace fast_planner;
 
-int main(int argc, char** argv) {
-  ros::init(argc, argv, "fast_planner_node");
-  ros::NodeHandle nh("~");
+int main(int argc, char **argv) {
+    ros::init(argc, argv, "fast_planner_node");
+    ros::NodeHandle nh("~");
 
-  int planner;
-  nh.param("planner_node/planner", planner, -1);
+    int planner;
+    nh.param("planner_node/planner", planner, -1);
+    bool benchmark_en{false};
+    nh.param("/benchmark_en", benchmark_en, false);
 
-  TopoReplanFSM topo_replan;
-  KinoReplanFSM kino_replan;
+    TopoReplanFSM topo_replan;
+    KinoReplanFSM kino_replan;
 
-  if (planner == 1) {
-    kino_replan.init(nh);
-  } else if (planner == 2) {
-    topo_replan.init(nh);
-  }
+    if (planner == 1) {
+        kino_replan.init(nh);
+    } else if (planner == 2) {
+        topo_replan.init(nh);
+    }
 
-  ros::Duration(1.0).sleep();
-  ros::spin();
+    if (benchmark_en) {
+        cout << " -- [FSM] benchmark_en" << endl;
+        cout << " -- [FSM] benchmark_en" << endl;
+        cout << " -- [FSM] benchmark_en" << endl;
 
-  return 0;
+        ros::Publisher cmd_pub = nh.advertise<quadrotor_msgs::PositionCommand>("/planning/pos_cmd", 1);
+        quadrotor_msgs::PositionCommand cmd;
+
+        TopoReplanFSM topo_replan;
+        KinoReplanFSM kino_replan;
+
+        ros::Duration(0.2).sleep();
+
+        cmd.header.stamp = ros::Time::now();
+        cmd.header.frame_id = "world";
+        cmd.position.x = 0.0;
+        cmd.position.y = -50.0;
+        cmd.position.z = 1.5;
+        cmd.velocity.x = 0.0;
+        cmd.velocity.y = 0.0;
+        cmd.velocity.z = 0.0;
+        cmd.acceleration.x = 0.0;
+        cmd.acceleration.y = 0.0;
+        cmd.acceleration.z = 0.0;
+        cmd.yaw = 1.5741;
+        cmd.yaw_dot = 0.0;
+        int cnt = 10;
+        while (cnt--) {
+            cmd_pub.publish(cmd);
+            ros::Duration(0.1).sleep();
+        }
+    }
+
+
+    ros::Duration(1.0).sleep();
+    ros::spin();
+
+    return 0;
 }

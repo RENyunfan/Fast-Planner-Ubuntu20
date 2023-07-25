@@ -251,6 +251,9 @@ void cmdCallback(const ros::TimerEvent& e) {
   cmd.acceleration.y = acc(1);
   cmd.acceleration.z = acc(2);
 
+  cmd.acc_norm = acc.norm();
+  cmd.vel_norm = vel.norm();
+
   cmd.yaw = yaw;
   cmd.yaw_dot = yawdot;
 
