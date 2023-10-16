@@ -18,7 +18,7 @@
     <!-- depth topic: depth image, 640x480 by default -->
     <!-- don't set cloud_topic if you already set these ones! -->
     <arg name="camera_pose_topic" value="/pcl_render_node/camera_pose"/>
-    <arg name="depth_topic" value="/pcl_render_node/depth"/>
+    <arg name="depth_topic" value="/pcl_render_node/depth111"/>
 
     <!-- topic of point cloud measurement, such as from LIDAR  -->
     <!-- don't set camera pose and depth, if you already set this one! -->

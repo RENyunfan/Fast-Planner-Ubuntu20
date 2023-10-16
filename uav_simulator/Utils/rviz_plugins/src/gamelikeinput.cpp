@@ -210,7 +210,7 @@ GameLikeInput::sendMessage()
   arrow_array.clear();
   arrow_->getSceneNode()->setVisible(false);
 
-  path.header.frame_id = "map";
+  path.header.frame_id = "world";
   path.header.stamp    = ros::Time::now();
 
   std::sort(array.data.begin(), array.data.end());

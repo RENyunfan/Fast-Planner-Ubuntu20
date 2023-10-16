@@ -145,7 +145,7 @@ void SDFMap::initMap(ros::NodeHandle &nh) {
 //        SyncPolicyImageOdom(100), *depth_sub_, *odom_sub_));
 //    sync_image_odom_->registerCallback(boost::bind(&SDFMap::depthOdomCallback, this, _1, _2));
 //
-        odom_sub_.reset(new message_filters::Subscriber<nav_msgs::Odometry>(node_, "/lidar_slam/odom", 100));
+        odom_sub_.reset(new message_filters::Subscriber<nav_msgs::Odometry>(node_, "/sdf_map/odom", 100));
         sync_pc_odom_.reset(new message_filters::Synchronizer<SyncPolicyPcOdom>(
                 SyncPolicyPcOdom(100), *pc_sub_, *odom_sub_));
         sync_pc_odom_->registerCallback(boost::bind(&SDFMap::pcOdomCallback, this, _1, _2));
@@ -490,7 +490,7 @@ void SDFMap::insertPointCloud() {
     // std::cout << "pos in proj: " << md_.camera_pos_ << std::endl;
 
     for (int i = 0; i < md_.pc_.size(); i++) {
-        if(i%mp_.skip_pixel_ == 0){
+        if (i % mp_.skip_pixel_ == 0) {
             md_.proj_points_[md_.proj_points_cnt++] = Eigen::Vector3d(md_.pc_[i].x, md_.pc_[i].y, md_.pc_[i].z);
         }
     }

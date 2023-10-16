@@ -44,8 +44,6 @@ int main(int argc, char **argv) {
 
     int planner;
     nh.param("planner_node/planner", planner, -1);
-    bool benchmark_en{false};
-    nh.param("/benchmark_en", benchmark_en, false);
 
     TopoReplanFSM topo_replan;
     KinoReplanFSM kino_replan;
@@ -56,42 +54,9 @@ int main(int argc, char **argv) {
         topo_replan.init(nh);
     }
 
-    if (benchmark_en) {
-        cout << " -- [FSM] benchmark_en" << endl;
-        cout << " -- [FSM] benchmark_en" << endl;
-        cout << " -- [FSM] benchmark_en" << endl;
-
-        ros::Publisher cmd_pub = nh.advertise<quadrotor_msgs::PositionCommand>("/planning/pos_cmd", 1);
-        quadrotor_msgs::PositionCommand cmd;
-
-        TopoReplanFSM topo_replan;
-        KinoReplanFSM kino_replan;
-
-        ros::Duration(0.2).sleep();
-
-        cmd.header.stamp = ros::Time::now();
-        cmd.header.frame_id = "world";
-        cmd.position.x = 0.0;
-        cmd.position.y = -50.0;
-        cmd.position.z = 1.5;
-        cmd.velocity.x = 0.0;
-        cmd.velocity.y = 0.0;
-        cmd.velocity.z = 0.0;
-        cmd.acceleration.x = 0.0;
-        cmd.acceleration.y = 0.0;
-        cmd.acceleration.z = 0.0;
-        cmd.yaw = 1.5741;
-        cmd.yaw_dot = 0.0;
-        int cnt = 10;
-        while (cnt--) {
-            cmd_pub.publish(cmd);
-            ros::Duration(0.1).sleep();
-        }
-    }
-
-
+    ros::AsyncSpinner spinner(4);
     ros::Duration(1.0).sleep();
-    ros::spin();
-
+    spinner.start();
+    ros::waitForShutdown();
     return 0;
 }
